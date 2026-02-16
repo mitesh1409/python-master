@@ -209,6 +209,11 @@ Should point to:
 ./.venv/bin/python
 ```
 
+This is the isolated environment for the project.
+Please ensure you are in the project directory when activating the environment to avoid confusion with other projects.
+And remember to always activate the environment before installing dependencies or running project code to ensure you are using the correct Python version and packages.
+You will need to activate the environment each time you start a new terminal session and want to work on the project.
+
 ---
 
 ### 8. Upgrade pip
