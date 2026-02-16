@@ -125,6 +125,12 @@ Check installed versions:
 pyenv versions
 ```
 
+You can get the available versions by running:
+
+```bash
+pyenv install --list
+```
+
 If the required version is missing:
 
 ```bash
