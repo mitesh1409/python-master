@@ -54,13 +54,6 @@ Set global:
 pyenv global 3.14.3
 ```
 
-Verify the installation:
-
-```bash
-python --version
-python3 --version
-```
-
 Step #4 Verify Python installation
 
 ```bash
@@ -88,6 +81,18 @@ Both should point to:
 ✔ Keep system Python untouched
 ✔ Use pyenv for development
 ✔ Never rely on global Homebrew Python
+
+### System Python
+
+System Python remains untouched:
+
+For example, on macOS:
+
+```bash
+/usr/bin/python3 → 3.9.6
+```
+
+That’s correct and safe.
 
 ---
 
