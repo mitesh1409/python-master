@@ -34,16 +34,24 @@ source ~/.zshrc
 
 Then restart the terminal.
 
-Step #3 Install latest Python version
-
-```bash
-pyenv install 3.14.3
-```
+Step #3 Install the required Python version
 
 You can get the available versions by running:
 
 ```bash
 pyenv install --list
+```
+
+Install required version:
+
+```bash
+pyenv install 3.14.3
+```
+
+Set global:
+
+```bash
+pyenv global 3.14.3
 ```
 
 Verify the installation:
@@ -62,7 +70,7 @@ python3 --version
 
 Both should show:
 
-```
+```bash
 Python 3.14.3
 ```
 
@@ -73,11 +81,28 @@ which python3
 
 Both should point to:
 
-```
+```bash
 ~/.pyenv/shims/...
 ```
 
 ✔ Keep system Python untouched
 ✔ Use pyenv for development
 ✔ Never rely on global Homebrew Python
+
+
+System Python is untouched.
+pyenv is there, and using it we installed couple of Python versions let say 3.14.x & 3.12.x. 3.14.x is set as global.
+
+To summarize and confirm I need to follow the following steps while setting up a project (clean professional workflow):
+
+Create a project folder.
+mkdir my-project
+cd my-project
+
+Go to project folder directory and run the following command:
+pyenv install <required-version>
+pyenv local <required-version>
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
 
