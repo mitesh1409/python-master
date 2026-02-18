@@ -3,6 +3,8 @@
 Course link:  
 [Python for AI - Full Beginner Course](https://www.youtube.com/watch?v=ygXn5nV5qFc)
 
+---
+
 ## Python Setup on Mac
 
 Step #1 Install Homebrew
@@ -308,3 +310,64 @@ my-project/
 * Reproducible environments
 * Cross-machine consistency
 * Clean separation of concerns
+
+---
+
+## Interactive Python
+
+**Prerequisites**  
+
+Interactive Python requires the IPython kernel. Let’s install it:  
+
+Make sure your virtual environment is activated:  
+# You should see (venv) in your terminal
+
+Install the required package:  
+
+```bash
+pip install ipykernel
+```
+
+This package allows Jupyter to run Python code interactively.
+
+**Set up Interactive Python**  
+
+Now let’s enable the interactive feature:  
+
+1. Open VS Code settings:
+    Press `Ctrl/Cmd + ,` (comma) Or File > Preferences > Settings
+2. Search for “execute selection”
+3. Find this setting: Jupyter > Interactive Window > Text Editor: Execute Selection
+4. Check the box to enable it
+
+What this does: When you press `Shift + Enter`, your selected code will run in the  
+Jupyter interactive window instead of the Python terminal.  
+This gives you a much richer, more visual experience.
+
+That’s it! You’re ready to use interactive mode.
+​
+**Interactive superpowers**  
+​
+Run selected code  
+
+* Highlight any code
+* Press Shift + Enter
+* Only that selection runs
+​
+Variables stay in memory  
+
+Run this step by step:
+
+```python
+# First, create a variable
+message = "Hello"
+
+# Later, use it (even in a different cell)
+print(message + " World!")
+
+# Modify it
+message = message.upper()
+print(message)
+```
+
+The variable `message` stays available throughout your session!
