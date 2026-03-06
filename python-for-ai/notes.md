@@ -320,7 +320,7 @@ my-project/
 Interactive Python requires the IPython kernel. Let’s install it:  
 
 Make sure your virtual environment is activated:  
-# You should see (venv) in your terminal
+You should see **(venv)** in your terminal
 
 Install the required package:  
 
