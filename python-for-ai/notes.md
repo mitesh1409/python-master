@@ -197,7 +197,7 @@ This creates an isolated environment using the locally selected Python version.
 source .venv/bin/activate
 ```
 
-Your shell prompt will indicate activation.
+Your shell prompt will indicate activation by showing (.venv) prefix.
 
 Verify:
 
