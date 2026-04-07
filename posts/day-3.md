@@ -218,4 +218,4 @@ Lists are stored in memory as references, so copying a list with = creates a sha
 To copy a list properly, use list(x) or slicing x[:] to create a new list in memory.
 
 
-## Next -> 
+## Next -> Day #4: Functions

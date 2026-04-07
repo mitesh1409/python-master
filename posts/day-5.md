@@ -1,0 +1,140 @@
+# Day #5: Packages
+
+What we will learn:  
+
+1. What, why and how of packages in Python
+2. How to install packages
+3. How to use packages in your code
+
+#1  
+What, why and how of packages in Python
+
+What is a package in Python?
+
+In Python, a package is a way of organizing related code modules into a directory structure.
+
+Example:  
+
+finance (package)
+- mf.py
+- fd.py
+- bond.py
+- tax.py
+- pf.py
+- nps.py
+- insurance (sub-package)
+  - term.py
+  - health.py
+  - auto.py
+
+Why use packages in Python?  
+
+Functions and methods are very useful in organizing code.  
+But they are not enough when we have a large codebase.  
+Imagine having all the code into a single file, even if we use functions and methods  
+it will eventually become messy as the codebase grows.  
+Since everything is in one place, it is hard to maintain and understand.  
+All changes will be done in a single file, therefore it is hard to distribute work among team members.  
+We will have more conflicts when the PRs are raised.  
+There is no modularity in the codebase.  
+
+Packages help solve this problem, it allows us to think & write code in modular way.  
+That way it becomes clean, easy to understand and maintain.
+
+How to package?
+
+Packages
+
+* Directory of relevant Python scripts
+* Each script file = module
+* Module = specifies functions, methods and new Python types that solve a particular problem
+* Thousands of packages available for Python (Python Package Index ([PyPI](https://pypi.org/)))
+
+The primary package repository for the Python programming language is  
+the Python Package Index (PyPI), often referred to as "The Warehouse".
+
+Some example packages are:  
+
+* NumPy - to efficiently work with arrays
+* Matplotlib - for data visualization
+* scikit-learn - for machine learning
+
+#2  
+How to install packages
+
+`pip install <package-name>`
+
+OR  
+
+`uv add <package-name>`
+
+pip and uv are package management systems for Python.
+
+You need to setup either pip or uv before using them.  
+
+UV is a modern, high-performance Python package manager and installer written in Rust. It serves as a drop-in replacement for traditional Python package management tools like pip, offering significant improvements in speed, reliability, and dependency resolution.
+
+uv is preferred over pip.  
+
+#3  
+How to use packages in your code
+
+You need to import packages before using them in your code.  
+
+```python
+import math
+import csv
+import numpy as np
+import pandas as pd
+```
+
+Sometimes you just need one specific function from a package and not the whole package.  
+In that case you can import only that required function from the package.  
+
+```python
+# We just need array from numpy
+from numpy import array
+```
+
+`import numpy as np` Vs `from numpy import array`
+
+Whole import  
+`import numpy as np`  
+This approach provides clear context when you call methods of numpy in your code.
+
+```python
+import numpy as np
+
+# Here it is clear that array method of NumPy is called.
+np.array([1, 2, 3, 4, 5])
+```
+
+Selective import  
+`from numpy import array`  
+In this approach, you loose the context of numpy methods when you call them in your code.
+
+```python
+from numpy import array
+
+# Here the context is lost, we don't know which array method until we check the import statement.
+array([1, 2, 3, 4, 5])
+```
+
+## Summary
+
+Packages in Python are essentially directories of Python scripts (modules) that include functions,  
+methods, and new Python types designed to solve specific problems.  
+This knowledge is crucial for leveraging existing code to solve new problems efficiently,  
+without reinventing the wheel.  
+
+Here are the key points:
+
+Understanding Packages: Packages help organize code and keep the Python distribution clean and manageable. They must be installed before use.
+
+Installing Packages: You learned how to use pip, a package maintenance system for Python, to install packages like NumPy.
+
+Importing Packages and Functions: You explored different ways to import packages and their specific functions or methods into your scripts. This includes importing the entire package, importing and renaming it, and selectively importing specific functions.
+
+Selective Import: You practiced selective import to use only what's necessary, like importing the pi function from the math package.
+
+## Next -> Day #6: NumPy
