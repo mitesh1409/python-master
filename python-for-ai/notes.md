@@ -80,9 +80,9 @@ Both should point to:
 ~/.pyenv/shims/...
 ```
 
-✔ Keep system Python untouched
-✔ Use pyenv for development
-✔ Never rely on global Homebrew Python
+✔ Keep system Python untouched  
+✔ Use pyenv for development  
+✔ Never rely on global Homebrew Python  
 
 ### System Python
 
