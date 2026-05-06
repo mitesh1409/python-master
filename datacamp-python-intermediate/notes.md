@@ -1,6 +1,6 @@
 # Datacamp - Intermediate Python
 
-**Index**
+**Index**  
 
 1. Basic plots with Matplotlib
 
