@@ -1,11 +1,23 @@
 # Learning Python Blog Posts Series
 
-Make use of gifs, pictures, memes, charts, diagrams.
-Comic style.
-Showing conversation between two guys.
+**Ideas**  
 
-Tony Stark - Python Master
-Peter Parker - Aspiring Python Developer
+Series name: Pythonverse  
+Generate logo with GenAI  
+
+Make use of gifs, pictures, memes, charts, diagrams.  
+
+Comic style.  
+
+Showing conversation between two guys:  
+Tony Stark - Python Master  
+Peter Parker - Aspiring Python Developer  
+
+Learning by doing - exercises and assignments  
+
+Small size lessons - 10-15 mins videos, 5-10 mins reading  
+
+Open source markdown handbook (contains notes, exercise/assignments etc.)
 
 Index
 
