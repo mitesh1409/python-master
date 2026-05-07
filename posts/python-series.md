@@ -21,6 +21,8 @@ Open source markdown handbook (contains notes, exercise/assignments etc.)
 
 Index
 
+1. Getting Started
+
 ---
 
 #1 Python Introduction
