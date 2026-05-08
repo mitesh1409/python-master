@@ -373,3 +373,30 @@ print(message)
 ```
 
 The variable `message` stays available throughout your session!
+
+---
+
+## Python Project Setup
+
+Step #1: Install uv  
+https://docs.astral.sh/uv/getting-started/installation/
+
+Step #2: Install Python using uv  
+`uv python install`
+
+Step #3: Create a project directory & initialize using uv  
+`mkdir <project-dir> && cd <project-dir> && uv init`
+
+Step #4: Check and set the required Python version for the project  
+Check the current Python version in the .python-version file,  
+if it is ok then we are good.  
+If we need a different Python version for our project then,  
+check if it is already installed if not then install it,  
+and then link it with our project using `uv python pin <version-number>`.
+
+Step #5: Setup virtual environment and activate it  
+`uv venv && source .venv/bin/activate`
+
+Step #6: (Optional) Install ipykernel package  
+
+Step #7: And then install, uninstall or update packages using uv  
