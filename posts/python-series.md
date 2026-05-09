@@ -172,3 +172,7 @@ Explore what are the other ways to check this.
 
 ---
 
+## PEP 8 Style Guide for Python Code
+
+* [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
+* [PEP-8 Tutorial: Code Standards in Python](https://www.datacamp.com/tutorial/pep8-tutorial-python-code)
