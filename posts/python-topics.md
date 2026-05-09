@@ -1,6 +1,8 @@
-# Learning Python Blog Posts Series
+# Python - Learning Topics
 
 **Ideas**  
+
+Idea is to create a blog post series or a handbook of all these topics.  
 
 Series name: Pythonverse  
 Generate logo with GenAI  
@@ -19,9 +21,10 @@ Small size lessons - 10-15 mins videos, 5-10 mins reading
 
 Open source markdown handbook (contains notes, exercise/assignments etc.)
 
-Index
+---
 
-1. Getting Started
+**Index**  
+
 
 ---
 
@@ -65,6 +68,7 @@ Can we provide type to variables (like in TypeScript)?
 String  
 Number  
 Boolean  
+Type casting  
 
 ---
 
