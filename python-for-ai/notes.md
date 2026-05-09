@@ -346,7 +346,7 @@ What this does: When you press `Shift + Enter`, your selected code will run in t
 Jupyter interactive window instead of the Python terminal.  
 This gives you a much richer, more visual experience.
 
-That’s it! You’re ready to use interactive mode.
+That’s it! You’re ready to use interactive mode.  
 ​
 **Interactive superpowers**  
 ​
@@ -396,6 +396,10 @@ and then link it with our project using `uv python pin <version-number>`.
 
 Step #5: Setup virtual environment and activate it  
 `uv venv && source .venv/bin/activate`
+
+OR  
+
+Activate virtual environment by running `.venv\Scripts\activate` from the project directory.  
 
 Step #6: (Optional) Install ipykernel package  
 
