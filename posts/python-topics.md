@@ -203,3 +203,9 @@ https://docs.astral.sh/ruff/
 ## Decorators in Python
 
 [Decorators in Python](./decorators.md)
+
+---
+
+## FastAPI
+
+[FastAPI](./fastapi.md)
