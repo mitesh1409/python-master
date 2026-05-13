@@ -187,3 +187,19 @@ Explore what are the other ways to check this.
 
 How to implement PEP 8 Styling in your codebase?
 https://docs.astral.sh/ruff/
+
+---
+
+## OOP in Python
+
+* Class
+* Constructor
+* Object
+* Static/Non-static Methods (behaviour)
+* Static/Non-static Properties (state)
+
+---
+
+## Decorators in Python
+
+[Decorators in Python](./decorators.md)
