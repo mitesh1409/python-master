@@ -2,6 +2,12 @@
 
 A decorator is a function that **wraps another function to add extra behaviour** without modifying its original code.
 
+Decorator = Accessory  
+Like an Accessory, a Decorator provides additional functionality, and can be reused  
+wherever required without repeating the code.
+
+Decorator helps to implement DRY principle.  
+
 ---
 
 ## Without Decorator
