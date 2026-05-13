@@ -21,6 +21,10 @@ Small size lessons - 10-15 mins videos, 5-10 mins reading
 
 Open source markdown handbook (contains notes, exercise/assignments etc.)
 
+Automate required updates in the content (with Python updates) using Agentic AI in place.  
+This will keep the content up to date with Python updates.  
+Add change log to track updates.  
+
 ---
 
 **Index**  
