@@ -35,7 +35,7 @@ Add change log to track updates.
 #1 Python Introduction
 
 A brief history  
-About the language  
+About the language - Swiss Army Knife  
 Where it is used  
 Popularity  
 Ecosystem  
@@ -50,6 +50,7 @@ Professional project setup
 Code editor/IDE  
 Jupyter notebook  
 Interactive Python  
+pip vs uv  
 Your first Python program - Hello World :)  
 etc.
 
