@@ -6,3 +6,6 @@
 4. Python comes with built-in data structures.
 5. Python has the Python Package Index (PyPI).
 6. Python doesn’t take itself too seriously ;).
+
+Reference:  
+Book: Head First Python 3rd Edition

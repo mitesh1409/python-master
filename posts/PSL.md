@@ -28,3 +28,6 @@ https://docs.python.org/3/library/index.html.
 | sys | tells you all about the system you’re running on |
 | zipfile | if your data’s compressed in a file, this module’s got your back |
 | sqlite3 | the world’s most popular embedded relational database system |
+
+Reference:  
+Book: Head First Python 3rd Edition

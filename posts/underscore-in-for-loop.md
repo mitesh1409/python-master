@@ -28,3 +28,6 @@ Python lets you use the underscore character instead.
 When you see the underscore in code, think “Ah ha!
 A variable is syntactically required here, but it’s value isn’t
 used, so the variable hasn’t been named.”
+
+Reference:  
+Book: Head First Python 3rd Edition

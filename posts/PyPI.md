@@ -7,3 +7,6 @@ Python Package Index and lives here: https://pypi.org.
 Known as PyPI (and pronounced “pie-pea-eye”), the index is a huge  
 collection of software. Once you find what you’re looking for,  
 installing is a breeze.
+
+Reference:  
+Book: Head First Python 3rd Edition

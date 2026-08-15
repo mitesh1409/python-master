@@ -13,3 +13,6 @@ Python: Ooooooh, that’s fancy lingo, isn’t it? 😉 But,
 yes, like a lot of my BIFs, len works with many different
 objects of many different types. At a push, I’d agree
 that len is polymorphic.
+
+Reference:  
+Book: Head First Python 3rd Edition
