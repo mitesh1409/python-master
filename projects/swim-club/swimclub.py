@@ -1,6 +1,6 @@
 import statistics
 
-__all__ = ['read_swim_data']
+__all__ = ['process_swim_data']
 
 # File location
 FOLDER = "swimdata"
@@ -30,7 +30,7 @@ def _time_to_minutes_seconds_hundredths(time_value):
     secs = mins_secs - (mins * 60)
     return f'{mins}:{secs}.{hundredths}'
 
-def read_swim_data(filename):
+def process_swim_data(filename):
     # Extracting data from the filename.
     swimmer, age, distance, stroke = filename.removesuffix(".txt").split("-")
 

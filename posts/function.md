@@ -23,6 +23,11 @@ Returns a single result
 A function can return multiple values seperated by comma but then it is automatically  
 converted into a tuple and returned as a single tuple.
 
+If a function tries to return more than one result, the  
+collection of returned values are bundled together  
+as a single tuple. This is due to the fact that Python  
+functions only ever return a single result.  
+
 Example: swimclub.py module file  
 
 ```python
@@ -90,3 +95,7 @@ print(result)
 ```
 
 Here when we call `swimclub.read_swim_data` function, it returns a tuple with 6 values.  
+
+---
+
+Commenting functions

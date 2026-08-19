@@ -17,5 +17,16 @@ Python lists are heterogeneous, which means they can contain different types of 
 
 Python lists are mutable, which means you can change the contents of a list after it’s been created. You can add, remove, or change items in a list.
 
+Although lists come with a handy `sort` method, be  
+careful using it as the ordering is applied in-place.  
+If you want to keep any list’s current order, use the  
+`sorted` BIF instead (which always returns a sorted  
+copy of your data).  
+
+`sort` - this is called on a list instance and changes the current order of list items,  
+the original order of list items is lost.  
+`sorted` - `sorted` is called by passing list instance as an argument, it returns a copy of the sorted list items, the original order of the list items remains as it is.  
+``
+
 Reference:  
 Book: Head First Python 3rd Edition
