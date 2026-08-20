@@ -33,6 +33,10 @@ the list methods, Python’s BIFs, and loops (with Python’s for loop a near pe
 
 When order of data is important, Lists are better.
 
+Time complexity of an item look-up is O(n) (sequential search).  
+
+Lists are mutable.
+
 ---
 
 Dictionaries similar to Associative Array, Map, Hash, or Symbol Table.  
@@ -61,3 +65,13 @@ You can work with the data in any dictionary using a dictionary-specific version
 of the square bracket notation, the dictionary methods, Python’s BIFs, and loops.
 
 When look-up is important in data then Dictionaries are the best.
+
+Time complexity of an item look-up is O(1).
+
+Dictionaries are mutable.
+
+---
+
+Dictionaries are preferred over Lists when you need frequent lookups.  
+Same concept applies in JavaScript too where  
+Map / Object lookup is O(1) vs Array.includes() which is O(n).
