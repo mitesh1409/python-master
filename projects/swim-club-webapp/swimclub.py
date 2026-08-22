@@ -1,7 +1,9 @@
 import statistics
+import os
+
 import hfpy_utils
 
-__all__ = ["process_swim_data", "generate_bar_chart"]
+__all__ = ["process_swim_data", "generate_bar_chart", "get_swimmers"]
 
 # File location
 DATA_FOLDER = "swimdata"
@@ -54,7 +56,7 @@ def process_swim_data(filename):
 
     return swimmer, age, distance, stroke, times, average_time, time_values
 
-def generate_bar_chart(filename):
+def generate_bar_chart(filename, location=CHARTS_FOLDER):
     # Process file data
     swimmer, age, distance, stroke, times, average, time_values = process_swim_data(filename)
 
@@ -79,7 +81,7 @@ def generate_bar_chart(filename):
         svg_bars += svg_bar
 
     # File to save bar charts
-    save_to = f"charts/{filename.replace(".txt", ".html")}"
+    save_to = f"{location}/{filename.replace(".txt", ".html")}"
 
     # HTML + SVG content for the bar chart file
     html_page = f"""
@@ -107,3 +109,20 @@ def generate_bar_chart(filename):
         print(html_page, file=tf)
 
     return save_to
+
+def get_swimmers():
+    data_files = os.listdir(DATA_FOLDER)
+
+    if ".DS_Store" in data_files:
+        data_files.remove(".DS_Store")
+
+    swimmers = {}
+    for data_file in data_files:
+        swimmer_name = data_file.split("-", 1)[0]
+
+        if swimmer_name not in swimmers:
+            swimmers[swimmer_name] = []
+
+        swimmers[swimmer_name].append(data_file)
+
+    return swimmers

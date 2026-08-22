@@ -79,7 +79,7 @@ def generate_bar_chart(filename):
         svg_bars += svg_bar
 
     # File to save bar charts
-    save_to = f"charts/{filename.replace(".txt", ".html")}"
+    save_to = f"{CHARTS_FOLDER}/{filename.replace(".txt", ".html")}"
 
     # HTML + SVG content for the bar chart file
     html_page = f"""
