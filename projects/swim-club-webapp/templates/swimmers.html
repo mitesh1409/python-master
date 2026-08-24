@@ -4,12 +4,12 @@
 <form method="POST" action="{{ url }}">
     <label for="{{ select_id }}">Please select a {{ select_id }}:</label>
     <select name="{{ select_id }}" id="{{ select_id }}">
-        {% for name in data %}
-            <option value="{{ name }}">{{ name }}</option>
+        {% for swimmer in swimmers %}
+        <option value="{{ swimmer }}">{{ swimmer }}</option>
         {% endfor %}
     </select>
     <p>
-        <input type="submit" value="Select"/>
+        <input type="submit" value="Select" />
     </p>
 </form>
 {% endblock %}
