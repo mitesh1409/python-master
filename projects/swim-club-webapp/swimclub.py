@@ -1,5 +1,6 @@
 import statistics
 import os
+import json
 
 import hfpy_utils
 
@@ -126,3 +127,27 @@ def get_swimmers():
         swimmers[swimmer_name].append(data_file)
 
     return swimmers
+
+def event_lookup(filename):
+    conversions = {
+        "Free": "freestyle",
+        "Back": "backstroke",
+        "Breast": "breaststroke",
+        "Fly": "butterfly",
+        "IM": "individual medley",
+    }
+
+    *_, distance, stroke = filename.removesuffix(".txt").split("-")
+    return f"{distance} {conversions[stroke]}"
+
+def event_records(event):
+    world_records = {}
+    with open("swimming_world_records.json", "r") as wr_file:
+        world_records = json.load(wr_file)
+
+    return {
+        "lc_men": world_records["LC Men"][event],
+        "sc_men": world_records["SC Men"][event],
+        "lc_women": world_records["LC Women"][event],
+        "sc_women": world_records["SC Women"][event],
+    }

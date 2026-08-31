@@ -58,12 +58,23 @@ def display_charts():
             time
         ))
 
+    # Get the name of event from data file.
+    event = swimclub.event_lookup(file_id)
+
+    # Get world records for this event.
+    event_records = swimclub.event_records(event)
+
+    print(event)
+    print(event_records)
+
     return render_template(
         "barchart.html",
         title=title,
         average=average,
-        bar_values=bar_values
+        bar_values=bar_values,
+        event=event,
+        event_records=event_records
     )
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=False, port=5001)
