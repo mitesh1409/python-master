@@ -18,3 +18,13 @@ and they will be replaced by their values via **Variable Interpolation** mechani
 
 Reference:  
 https://docs.python.org/3/reference/lexical_analysis.html#f-strings
+
+---
+
+**Don’t be tempted to use an f-string when creating parameterized SQL statements**  
+
+If we were to ask you to create Python code to build an INSERT statement as  
+a string, you’d likely suggest using a triple-quoted f-string. Although this  
+would work, it’s not the recommended approach when creating parameterized SQL  
+statements. Instead, the Python database technologies provide placeholders,  
+which do the same thing but in a much safer way.
