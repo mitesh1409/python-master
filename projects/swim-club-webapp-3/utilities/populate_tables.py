@@ -9,21 +9,23 @@ data_files = os.listdir(SWIMCLUB_DATA_FOLDER)
 if ".DS_Store" in data_files:
     data_files.remove(".DS_Store")
 
-swimmers = []
-events = []
-
-for data_file in data_files:
-    name, age, distance, stroke = data_file.removesuffix(".txt").split("-")
-    if (name, age) not in swimmers:
-        swimmers.append((name, age))
-    if (distance, stroke) not in events:
-        events.append((distance, stroke))
+find_swimmer_query = """
+    select id
+    from swimmers
+    where name = ? and age = ?
+"""
 
 populate_swimmers_query = """
     insert into swimmers
     (name, age)
     values
     (?, ?)
+"""
+
+find_event_query = """
+    select id
+    from events
+    where distance = ? and stroke = ?
 """
 
 populate_events_query = """
@@ -33,12 +35,6 @@ populate_events_query = """
     (?, ?)
 """
 
-# Populate swimmers and events data.
-with sqlite3.connect(SWIMCLUB_DB) as dbc:
-    db_cursor = dbc.cursor()
-    db_cursor.executemany(populate_swimmers_query, swimmers)
-    db_cursor.executemany(populate_events_query, events)
-
 populate_times_query = """
     insert into times
     (swimmer_id, event_id, time)
@@ -46,13 +42,23 @@ populate_times_query = """
     (?, ?, ?)
 """
 
-# Populate times data.
+# Populate swimmers and events data.
 with sqlite3.connect(SWIMCLUB_DB) as dbc:
     db_cursor = dbc.cursor()
+
     for data_file in data_files:
         name, age, distance, stroke = data_file.removesuffix(".txt").split("-")
-        swimmer_id = db_cursor.execute("select id from swimmers where name = ? and age = ?", (name, age)).fetchone()[0]
-        event_id = db_cursor.execute("select id from events where distance = ? and stroke = ?", (distance, stroke)).fetchone()[0]
+
+        swimmer = db_cursor.execute(find_swimmer_query, (name, age)).fetchone()
+        if not swimmer:
+            db_cursor.execute(populate_swimmers_query, (name, age))
+
+        event = db_cursor.execute(find_event_query, (distance, stroke)).fetchone()
+        if not event:
+            db_cursor.execute(populate_events_query, (distance, stroke))
+
+        swimmer_id = db_cursor.execute(find_swimmer_query, (name, age)).fetchone()[0]
+        event_id = db_cursor.execute(find_event_query, (distance, stroke)).fetchone()[0]
         with open(f"swimdata/{data_file}", "r") as fs:
             data = fs.readlines()[0]
             times = data.strip().split(",")
