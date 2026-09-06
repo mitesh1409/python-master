@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div>Event: {{ event }}</div>
+
+{% for bar_value in bar_values %}
+<div class="chart">
+    <svg height="30" width="450">
+        <rect height="30" width="{{ bar_value[0] }}" style="fill:rgb(0,0,255);" />
+    </svg>{{ bar_value[1] }}
+</div>
+{% endfor %}
+
+<p>Average time: {{ average }}</p>
+
+<div>
+    World Records for this event are:<br />
+    <ul>
+        <li>
+            Long Course Men - Time: {{ event_records["lc_men"]["time"] }}, Name: {{ event_records["lc_men"]["name"] }},
+            Country: {{ event_records["lc_men"]["country"] }}, Date: {{ event_records["lc_men"]["date"] }}
+        </li>
+        <li>
+            Short Course Men - Time: {{ event_records["sc_men"]["time"] }}, Name: {{ event_records["sc_men"]["name"] }},
+            Country: {{ event_records["sc_men"]["country"] }}, Date: {{ event_records["sc_men"]["date"] }}
+        </li>
+        <li>
+            Long Course Women - Time: {{ event_records["lc_women"]["time"] }}, Name: {{
+            event_records["lc_women"]["name"] }}, Country: {{ event_records["lc_women"]["country"] }}, Date: {{
+            event_records["lc_women"]["date"] }}
+        </li>
+        <li>
+            Short Course Women - Time: {{ event_records["sc_women"]["time"] }}, Name: {{
+            event_records["sc_women"]["name"] }}, Country: {{ event_records["sc_women"]["country"] }}, Date: {{
+            event_records["sc_women"]["date"] }}
+        </li>
+    </ul>
+</div>
+{% endblock %}

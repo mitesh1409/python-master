@@ -1,8 +1,7 @@
 import sqlite3
 import queries
 
-# SWIMCLUB_DB = "swimclub.db"
-SWIMCLUB_DB = "CoachDB.sqlite3"
+SWIMCLUB_DB = "swimclub.db"
 
 def get_swim_sessions():
     with sqlite3.connect(SWIMCLUB_DB) as dbc:

@@ -98,3 +98,55 @@ Restart button at the top of the VS Code window that
 will do the trick. When you click on that, your previous  
 Python session is deleted including its cache, and you  
 get to start over.  
+
+---
+
+**Purpose of __all__:**  
+
+It controls what gets exported when someone does `from module import *` — it defines the public API of your module.  
+
+```python
+__all__ = ['function1', 'function2']  # only these are exported
+
+def function1():  # ✅ public
+    ...
+
+def function2():  # ✅ public
+    ...
+
+def _function3():  # ✅ private by convention
+    ...
+
+def _function4():  # ✅ private by convention
+    ...
+```
+
+---
+
+**Is it mandatory?**
+
+No, it's completely optional. Without `__all__`:
+- `from module import *` imports **everything** that doesn't start with `_`
+- Explicit imports like `from module import function1` always work regardless
+
+---
+
+**Is it good to have?**
+
+It depends on the size and purpose of your module:
+
+| Scenario | Use `__all__`? |
+|---|---|
+| Small personal script | ❌ Not needed |
+| Module used by others | ✅ Good practice |
+| Library or package | ✅ Recommended |
+
+---
+
+> 💡 **Best practice combination** — use both `__all__` and `_` prefix together:
+> - `_` prefix → signals private to IDEs and developers
+> - `__all__` → enforces public API for `import *`
+
+> 💡 Simple rule:
+> - Script that runs on its own → __all__ not needed
+> - Module that others import from → __all__ is good practice

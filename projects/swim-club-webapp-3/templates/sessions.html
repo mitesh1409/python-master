@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url }}">
+    <label for="{{ select_id }}">Please select a session date:</label>
+    <select name="{{ select_id }}" id="{{ select_id }}">
+        {% for session in sessions %}
+        <option value="{{ session }}">{{ session }}</option>
+        {% endfor %}
+    </select>
+    <p>
+        <input type="submit" value="Select" />
+    </p>
+</form>
+{% endblock %}
