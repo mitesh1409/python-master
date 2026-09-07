@@ -38,3 +38,9 @@ with sqlite3.connect(SWIMCLUB_DB) as dbc:
 print(results.fetchall())
 print(f"Database {SWIMCLUB_DB} created successfully.")
 print("swimmers, events and times tables are created successfully!")
+
+# ```sql
+# CREATE USER 'swimDB_admin'@'localhost' IDENTIFIED BY 'password';
+# GRANT ALL ON swimDB.* TO 'swimDB_admin'@'localhost';
+# FLUSH PRIVILEGES;
+# ```
