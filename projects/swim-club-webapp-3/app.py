@@ -1,7 +1,7 @@
 import statistics
 from flask import Flask, session, render_template, request
 
-import data_access
+import data_access_v2
 import swimclub
 import hfpy_utils
 
@@ -17,8 +17,9 @@ def index():
 
 @app.get("/swims")
 def display_swim_sessions():
-    data = data_access.get_swim_sessions()
-    sessions = [value[0].split(" ")[0] for value in data]
+    data = data_access_v2.get_swim_sessions()
+    sessions = [str(value[0]) for value in data]
+    print('sessions', sessions)
     return render_template(
         "sessions.html",
         title="Select a swim session",
@@ -31,7 +32,7 @@ def display_swim_sessions():
 def display_swimmers():
     session["session_date"] = request.form["session_date"]
 
-    data = data_access.get_swimmers_by_session(session["session_date"])
+    data = data_access_v2.get_swimmers_by_session(session["session_date"])
     swimmers = [f"{value[0]}-{value[1]}" for value in data]
 
     return render_template(
@@ -46,7 +47,7 @@ def display_swimmers():
 def display_events():
     session["swimmer"], session["age"] = request.form["swimmer"].split("-")
 
-    data = data_access.get_swimmers_events_by_session(session["swimmer"], session["age"], session["session_date"])
+    data = data_access_v2.get_swimmers_events_by_session(session["swimmer"], session["age"], session["session_date"])
     events = [f"{value[0]} {value[1]}" for value in data]
 
     return render_template(
@@ -61,7 +62,7 @@ def display_events():
 def display_charts():
     distance, stroke = request.form["event"].split(" ")
 
-    data = data_access.get_swimmers_times_by_event_and_session(session["swimmer"], session["age"], distance, stroke, session["session_date"])
+    data = data_access_v2.get_swimmers_times_by_event_and_session(session["swimmer"], session["age"], distance, stroke, session["session_date"])
     times = [value[0] for value in data]
 
     title = f"{session["swimmer"]} (Under {session["age"]}) {distance} {stroke} - {session["session_date"]}"
