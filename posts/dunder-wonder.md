@@ -8,5 +8,11 @@ referring to is __exit__. All of these (as a group) are called
 underscore is known as a “wonder” (and—yes—it is a perfectly
 acceptable reaction to groan at all of this).
 
+It’s just not possible to ignore the dunders when creating Python classes.  
+
+Another place where the dunders shine is in relation to the `with` statement.  
+Two dunders, `__enter__` and `__exit__`, provide hooks into any `with` statement’s  
+setup and teardown mechanism. 
+
 Reference:  
 Book: Head First Python 3rd Edition
