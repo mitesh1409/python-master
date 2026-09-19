@@ -28,5 +28,15 @@ the original order of list items is lost.
 `sorted` - `sorted` is called by passing list instance as an argument, it returns a copy of the sorted list items, the original order of the list items remains as it is.  
 ``
 
+```python
+ingredients = ["pasta", "tomatoes", "garlic", "basil", "olive oil", "salt"]
+
+# Access every second element
+print(ingredients[::2])
+
+# Access every third element, starting at the second
+print(ingredients[1::3])
+```
+
 Reference:  
 Book: Head First Python 3rd Edition
