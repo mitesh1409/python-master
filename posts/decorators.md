@@ -1,4 +1,4 @@
-## Decorators in Python
+# Decorators in Python
 
 A decorator is a function that **wraps another function to add extra behaviour** without modifying its original code.
 

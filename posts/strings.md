@@ -44,3 +44,19 @@ Strings are evaluated in alphabetical order.
 
 "Apple" > "Banana" # False
 ```
+
+---
+
+```bash
+>>> import string
+>>> string.ascii_lowercase
+'abcdefghijklmnopqrstuvwxyz'
+>>> 
+>>> string.digits
+'0123456789'
+>>> string.punctuation
+'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+>>> 
+```
+
+These can be used in string validations.  
