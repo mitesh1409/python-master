@@ -7,17 +7,19 @@ Course link:
 
 ## Python Setup on Mac
 
-Step #1 Install Homebrew
+### Step #1 Install Homebrew
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Step #2 Install pyenv
+### Step #2 Install pyenv
 
 ```bash
 brew install pyenv
 ```
+
+"pyenv" tool in Python is similar to "nvm" in Node.js.  
 
 Add following lines to shell configuration file (.zshrc or .bashrc):
 
@@ -36,7 +38,7 @@ source ~/.zshrc
 
 Then restart the terminal.
 
-Step #3 Install the required Python version
+### Step #3 Install the required Python version
 
 You can get the available versions by running:
 
@@ -56,7 +58,7 @@ Set global:
 pyenv global 3.14.3
 ```
 
-Step #4 Verify Python installation
+### Step #4 Verify Python installation
 
 ```bash
 python --version
@@ -99,8 +101,6 @@ That’s correct and safe.
 ---
 
 ## 📘 Python Project Setup (professional)
-
----
 
 ### 1. System Requirements
 
@@ -212,7 +212,8 @@ Should point to:
 ```
 
 This is the isolated environment for the project.  
-Please ensure you are in the project directory when activating the environment to avoid confusion with other projects.  
+Please ensure you are in the project directory when activating the environment  
+to avoid confusion with other projects.  
 And remember to always activate the environment before installing dependencies or  
 running project code to ensure you are using the correct Python version and packages.  
 You will need to activate the environment each time you start a new terminal session and  
