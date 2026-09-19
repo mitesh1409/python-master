@@ -1,7 +1,17 @@
 # Module
 
+Modules are Python scripts.  
+
+* Files ending with .py extension.
+* Contains functions and attributes.
+* Can contain other modules as well.
+
+Use `dir()` and `help()` built-in functions to get help on a module.  
+
+---
+
 Once you move code into its own file,  
-it becomes is a Python module,  
+it becomes a Python module,  
 which you can import as needed.
 
 Example: swimclub.py module file  
@@ -125,7 +135,8 @@ def _function4():  # ✅ private by convention
 
 **Is it mandatory?**
 
-No, it's completely optional. Without `__all__`:
+No, it's completely optional. Without `__all__`:  
+
 - `from module import *` imports **everything** that doesn't start with `_`
 - Explicit imports like `from module import function1` always work regardless
 
