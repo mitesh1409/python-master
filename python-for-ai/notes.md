@@ -356,7 +356,7 @@ Run selected code
 * Highlight any code
 * Press Shift + Enter
 * Only that selection runs
-​
+
 Variables stay in memory  
 
 Run this step by step:
