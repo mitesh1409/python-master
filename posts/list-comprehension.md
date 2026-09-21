@@ -7,8 +7,12 @@ code cleaner, shorter, and often faster to run.
 Every list comprehension lives inside square brackets `[]`  
 and follows this basic recipe:
 
-```python
+```
 new_list = [expression for item in iterable if condition]
+
+OR
+
+[ output expression for iterator variable in iterable if predicate expression ]
 ```
 
 **expression**: What you want to do to the item (the final result).  
@@ -105,3 +109,75 @@ evens_set  = {x for x in range(10) if x % 2 == 0}
 ---
 
 > 💡 **The note about tuples** — technically Python has no tuple comprehension syntax. `(x for x in ...)` is a **generator expression**, not a tuple comprehension. It's a common misconception worth knowing.
+
+---
+
+## Nested Loops
+
+```python
+pairs = []
+
+for num1 in range(0, 2):
+    for num2 in range(6, 8):
+        pairs.append((num1, num2))
+
+print(pairs)
+```
+
+Do the same with list comprehension.  
+
+```python
+pairs = [(num1, num2) for num1 in range(0, 2) for num2 in range(6, 8)]
+```
+
+---
+
+## List comprehension over iterables
+
+You know that list comprehensions can be built over iterables. Given the following objects below, which of these can we build list comprehensions over?
+
+```python
+doctor = ['house', 'cuddy', 'chase', 'thirteen', 'wilson']
+
+range(50)
+
+underwood = 'After all, we are nothing more or less than what we choose to reveal.'
+
+jean = '24601'
+
+flash = ['jay garrick', 'barry allen', 'wally west', 'bart allen']
+
+valjean = 24601
+```
+
+You can build list comprehensions over all the objects except the integer object `valjean`.
+
+---
+
+## Nested list comprehensions
+
+Great! At this point, you have a good grasp of the basic syntax of list comprehensions. Let's push your code-writing skills a little further. In this exercise, you will be writing a list comprehension within another list comprehension, or nested list comprehensions. It sounds a little tricky, but you can do it!
+
+Let's step aside for a while from strings. One of the ways in which lists can be used are in representing multi-dimension objects such as matrices. Matrices can be represented as a list of lists in Python. For example a 5 x 5 matrix with values 0 to 4 in each row can be written as:
+
+```python
+matrix = [[0, 1, 2, 3, 4],
+          [0, 1, 2, 3, 4],
+          [0, 1, 2, 3, 4],
+          [0, 1, 2, 3, 4],
+          [0, 1, 2, 3, 4]]
+```
+
+Your task is to recreate this matrix by using nested listed comprehensions. Recall that you can create one of the rows of the matrix with a single list comprehension. To create the list of lists, you simply have to supply the list comprehension as the output expression of the overall list comprehension:
+
+`[[output expression] for iterator variable in iterable]`
+
+Note that here, the output expression is itself a list comprehension.
+
+Solution:  
+
+```python
+matrix = [[num for num in range(0, 5)] for row in range(0, 5)]
+```
+
+**Nested List Comprehensions**: These allow for the creation of multi-dimensional lists. For example, generating a 5x5 matrix can be achieved with `[[col for col in range(5)] for row in range(5)]`.
