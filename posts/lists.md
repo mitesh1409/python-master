@@ -40,3 +40,21 @@ print(ingredients[1::3])
 
 Reference:  
 Book: Head First Python 3rd Edition
+
+---
+
+Lists in Python are mutable, allowing you to add, remove, or modify elements.  
+
+Key points:  
+
+* **Creating Lists**: You saw how to create a list to store a collection of items, such as different types of cookies you've eaten over a week.
+
+* **Adding Elements**: Using the .append() method to add individual items to a list and the .extend() method to combine multiple lists into one.
+
+* **Accessing and Removing Elements**: You learned how to access elements in a list using their index and how to remove elements with the .pop() method, which requires the index of the element you wish to remove.
+
+* **Finding Elements**: The .index() method was introduced as a way to find the position of an item in a list.
+
+* **Iterating Over Lists**: You explored how to use list comprehensions to iterate over each element in a list, performing operations like converting strings to title case.
+
+* **Sorting Lists**: Lastly, you learned how to use the sorted() function to return a new list with elements in order, such as sorting cookie names alphabetically.
