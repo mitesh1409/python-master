@@ -55,6 +55,19 @@ So Generators are memory efficient compared to List Comprehensions.
 
 > A list comprehension produces a list as output, a generator produces a generator object.
 
+List Comprehensions  
+Provides the whole list.  
+If the list is huge/big then it will require more memory,  
+and there is a chance that application may run out of memory  
+because of this.  
+
+Generators  
+They provide the generator object.  
+We can generate elements of the sequence on the fly when required.  
+It can be used to stream data.  
+Memory requirements stays low regardless of the amount of data processed  
+by Generators.  
+
 ---
 
 ## Generator Function

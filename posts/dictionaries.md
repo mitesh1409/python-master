@@ -50,3 +50,16 @@ recipe = {"pasta": 500,
           "garlic": 25,
           "salt": 5}
 ```
+
+---
+
+We can convert a list of dictionaries to pandas DataFrame to facilitate data analysis.  
+
+```python
+import pandas as pd
+
+...
+
+df = pd.DataFrame(list_of_dicts)
+print(df.head())
+```
