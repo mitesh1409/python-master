@@ -37,7 +37,8 @@ get_stocks()
 get_news()
 ```
 
-**Problems:**
+**Problems:**  
+
 - Timing logic is **repeated** in every function
 - Violates **DRY** (Don't Repeat Yourself) principle
 - If you want to change the logging format, you must update every function
@@ -95,7 +96,8 @@ def get_stocks():
 get_stocks = timer(get_stocks)
 ```
 
-So when you call `get_stocks()`, you're actually calling `wrapper()` which:
+So when you call `get_stocks()`, you're actually calling `wrapper()` which:  
+
 1. Records start time
 2. Calls the original `get_stocks()`
 3. Records end time
