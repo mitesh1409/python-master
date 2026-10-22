@@ -32,6 +32,8 @@ Find an installed Python version.
 
 ## Step #3: Make OS to use Python version installed using uv.
 
+For your Linux or WSL system.
+
 `which python3`  
 
 It still shows system Python.
