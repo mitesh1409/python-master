@@ -74,3 +74,7 @@ try-except vs. raise
 |---|---|---|
 | Errors | Avoid errors being produced | Will produce an error |
 | Subsequent code | Still execute subsequent code | Avoid executing subsequent code |
+
+---
+
+https://docs.python.org/3/library/exceptions.html#exception-hierarchy
