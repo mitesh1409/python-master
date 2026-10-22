@@ -103,9 +103,7 @@ That’s correct and safe.
 
 ---
 
-## 📘 Python Project Setup (professional)
-
----
+## #2 📘 Python Project Setup (professional)
 
 ### 1. System Requirements
 
@@ -193,6 +191,8 @@ python -m venv .venv
 ```
 
 This creates an isolated environment using the locally selected Python version.
+
+This is like `npm init` in Node.js? Confirm with Claude/Gemini.
 
 ---
 
@@ -320,7 +320,7 @@ my-project/
 
 ---
 
-## Interactive Python
+## #3 Interactive Python
 
 **Prerequisites**  
 
