@@ -96,6 +96,30 @@ Immutable = int, float, bool, str, tuple
 
 ---
 
+Operators in Python
+
+Arithmatic operators = `+`, `-`, `*`, `/`, `//`, `%`, `**`
+
+Comparison operators = `>`, `>=`, `<`, `<=`, `==`, `!=`
+
+Logical operators = `and`, `or`, `not`
+
+Assignment operators = `=`, `+=`,...
+
+Identity operators = `is`  
+It checks references not values.
+
+Membership operators = `in`, `not in`
+
+Bitwise operators
+
+How to get bit representation of a number?  
+For example 7 = 111, 8 = 1000 etc.
+
+Binary operators
+
+---
+
 #5 Math operators and "math" library functions
 
 +, -, *, /, //, %, ** etc.
