@@ -120,6 +120,62 @@ Binary operators
 
 ---
 
+In Python, assignment operators are used to assign values to variables. The most fundamental assignment operator is the single equal sign (=), which takes the value or expression on the right-hand side and assigns it to the variable on the left-hand side.
+Python also features augmented assignment operators (compound operators), which perform a mathematical or bitwise operation on the variable and then assign the updated result back to that same variable.
+
+## Core Python Assignment Operators
+
+| Operator | Name | Example | Equivalent To |
+|---|---|---|---|
+| = | Assignment | x = 5 | x = 5 |
+| += | Addition Assignment | x += 3 | x = x + 3 |
+| -= | Subtraction Assignment | x -= 3 | x = x - 3 |
+| *= | Multiplication Assignment | x *= 3 | x = x * 3 |
+| /= | Division Assignment (always returns a float) | x /= 3 | x = x / 3 |
+| %= | Modulus Assignment (remainder) | x %= 3 | x = x % 3 |
+| //= | Floor Division Assignment | x //= 3 | x = x // 3 |
+| **= | Exponentiation Assignment | x **= 3 | x = x ** 3 |
+
+## Bitwise Assignment Operators
+
+These are used for low-level operations on binary digits:
+
+* &= (Bitwise AND): x &= 3 → x = x & 3
+* |= (Bitwise OR): x |= 3 → x = x | 3
+* ^= (Bitwise XOR): x ^= 3 → x = x ^ 3
+* >>= (Right Shift): x >>= 3 → x = x >> 3
+* <<= (Left Shift): x <<= 3 → x = x << 3
+
+## Special Assignment Features in Python
+
+## 1. The Walrus Operator (:=)
+Introduced in Python 3.8, the walrus operator allows you to assign a value to a variable inside an expression (like an if statement or a while loop).
+
+## Without walrus operator
+n = len(my_list) if n > 10:
+    print(f"List is too long: {n} elements")
+
+## With walrus operator
+if (n := len(my_list)) > 10:
+    print(f"List is too long: {n} elements")
+
+## 2. Multiple & Chained Assignment
+Python allows you to assign a single value to multiple variables simultaneously, or unpack structures quickly:
+
+## Chained assignment
+x = y = z = 10
+
+## Multiple assignment (Unpacking)
+a, b = 1, 2  
+
+## Easy variable swapping
+a, b = b, a  
+
+## Common Pitfall: = vs ==
+Always remember that = is used to store data inside a variable. If you want to check if two values are equal, you must use the comparison operator ==. Python explicitly prevents you from accidentally using = inside conditional expressions like if x = 5: to keep your code safe.
+
+---
+
 #5 Math operators and "math" library functions
 
 +, -, *, /, //, %, ** etc.
