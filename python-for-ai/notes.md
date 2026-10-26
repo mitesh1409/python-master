@@ -377,7 +377,7 @@ The variable `message` stays available throughout your session!
 
 ---
 
-## Python Project Setup
+## Python Project Setup using "uv"
 
 Step #1: Install uv  
 https://docs.astral.sh/uv/getting-started/installation/
