@@ -75,6 +75,25 @@ Number
 Boolean  
 Type casting  
 
+Data types in Python
+
+- number = integer, float, complex
+- boolean = True, False
+- text = string
+- sequence = list, tuple, range
+- set = set
+- mapping = dictionary
+- Null type = <class 'NoneType'>
+
+@todo  
+Explore about number -> complex type.
+
+Mutable vs Immutable Data types
+
+Mutable = list, dictionary, set
+
+Immutable = int, float, bool, str, tuple
+
 ---
 
 #5 Math operators and "math" library functions
