@@ -116,6 +116,24 @@ Bitwise operators
 How to get bit representation of a number?  
 For example 7 = 111, 8 = 1000 etc.
 
+```plaintext
+Decimal 7, Binary 111
+
+2 | 7 - (2 x 3) = 1
+-----
+2 | 3 - (2 x 1) = 1
+-----
+  | 1           = 1
+
+Decimal 4, Binary 100
+
+2 | 4 - (2 x 2) = 0
+-----
+2 | 2 - (2 x 1) = 0
+-----
+  | 1           = 1
+```
+
 Binary operators
 
 ---
@@ -137,7 +155,6 @@ Python also features augmented assignment operators (compound operators), which 
 | **= | Exponentiation Assignment | x **= 3 | x = x ** 3 |
 
 ## Bitwise Assignment Operators
-
 These are used for low-level operations on binary digits:
 
 * &= (Bitwise AND): x &= 3 → x = x & 3
@@ -146,39 +163,98 @@ These are used for low-level operations on binary digits:
 * >>= (Right Shift): x >>= 3 → x = x >> 3
 * <<= (Left Shift): x <<= 3 → x = x << 3
 
-## Special Assignment Features in Python
-
-## 1. The Walrus Operator (:=)
+## Special Assignment Features in Python## 1. The Walrus Operator (:=)
 Introduced in Python 3.8, the walrus operator allows you to assign a value to a variable inside an expression (like an if statement or a while loop).
 
-## Without walrus operator
-n = len(my_list) if n > 10:
+# Without walrus operatorn = len(my_list)if n > 10:
     print(f"List is too long: {n} elements")
-
-## With walrus operator
-if (n := len(my_list)) > 10:
+# With walrus operatorif (n := len(my_list)) > 10:
     print(f"List is too long: {n} elements")
 
 ## 2. Multiple & Chained Assignment
 Python allows you to assign a single value to multiple variables simultaneously, or unpack structures quickly:
 
-## Chained assignment
-x = y = z = 10
-
-## Multiple assignment (Unpacking)
-a, b = 1, 2  
-
-## Easy variable swapping
-a, b = b, a  
+# Chained assignmentx = y = z = 10 
+# Multiple assignment (Unpacking)a, b = 1, 2  
+# Easy variable swappinga, b = b, a  
 
 ## Common Pitfall: = vs ==
 Always remember that = is used to store data inside a variable. If you want to check if two values are equal, you must use the comparison operator ==. Python explicitly prevents you from accidentally using = inside conditional expressions like if x = 5: to keep your code safe.
 
 ---
 
+Identity operators
+
+`is`, `is not`
+
+>>> ten = 10
+>>> tenn = 10
+>>> id(ten)
+11370384
+>>> id(tenn)
+11370384
+>>>
+>>> ten is tenn
+True
+>>>
+>>> hello = 'Hello'
+>>> hola = 'Hello'
+>>>
+>>> id(hello)
+131215891614480
+>>> id(hola)
+131215891614480
+>>> hello is hola
+True
+>>>
+>>> bye = 'bye'
+>>>
+>>> id(bye)
+131215889615296
+>>>
+>>> hello is bye
+False
+>>> hello is not bye
+True
+>>>
+
+---
+
+Operator precedence
+
+Check for Python what is the operator precedence.
+
+1. parentheses/grouping `()`
+2. powers/exponents `**`
+3. unary operators `not`, `~`
+4. multiplication `*`, division `/`, floor division `//`, modulous `%`
+5. addition `+`, subtraction `-`
+6. bitwise operators
+7. comparison
+8. not
+9. and
+10. or
+
+Remembering this order is not important, but you should have general idea.  
+Use parentheses for clarity.  
+
+The BODMAS Rule is a standard mathematical order of operations used to simplify expressions with multiple operators.
+
+What BODMAS Stands For
+
+- B – Brackets (solve innermost brackets first: (), {}, [])
+- O – Orders (powers, indices, exponents, and square roots)
+- D – Division
+- M – Multiplication
+- A – Addition
+- S – Subtraction
+
+---
+
 #5 Math operators and "math" library functions
 
 +, -, *, /, //, %, ** etc.
+
 math.sqrt()
 math.pi
 math.floor()
