@@ -405,3 +405,29 @@ Activate virtual environment by running `.venv\Scripts\activate` from the projec
 Step #6: (Optional) Install ipykernel package  
 
 Step #7: And then install, uninstall or update packages using uv  
+
+Installing Jupyter Notebook.
+
+```bash
+uv add notebook          # installs into project's .venv only
+uv run jupyter notebook  # runs from project's .venv
+```
+
+This keeps each project’s Jupyter version isolated.
+
+JupyterLab is the modern replacement for classic Jupyter Notebook.
+
+Installing JupyterLab.
+
+```bash
+uv add jupyterlab
+uv run jupyter lab
+```
+
+Verify using the following:  
+
+```python
+import platform
+
+print(platform.python_version())
+```
