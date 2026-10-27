@@ -60,3 +60,32 @@ Strings are evaluated in alphabetical order.
 ```
 
 These can be used in string validations.  
+
+---
+
+Reversing a string is easy with `hello[::-1]`.   
+
+```bash
+>>> hello = 'Hello'
+>>>
+>>>
+>>> hello[:]
+'Hello'
+>>>
+>>> hello[::1]
+'Hello'
+>>>
+>>>
+>>> hello[::2]
+'Hlo'
+>>>
+>>>
+>>> hello[::-1]
+'olleH'
+>>>
+>>>
+>>> hello[::-2]
+'olH'
+>>>
+>>>
+```
