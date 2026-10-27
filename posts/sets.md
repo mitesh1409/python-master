@@ -50,3 +50,28 @@ ingredients = {"pasta", "tomatoes", "garlic", "basil", "olive oil", "salt"}
 We can use the built-in function `set()` to convert another data structure to a set.  
 This is called casting to a set and while doing this duplicate values are removed  
 automatically.  
+
+---
+
+How to create an empty set?
+
+```python
+# incorrect
+empty_set = {}
+print(type(empty_set))
+
+# correct
+empty_set = set()
+print(type(empty_set))
+```
+
+---
+
+set operations
+
+union
+
+intersection
+
+difference
+
