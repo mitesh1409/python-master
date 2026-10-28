@@ -13,3 +13,7 @@
 * `input()`
 * `reduce()`
 * `filter()`
+* `any()`
+* `all()`
+* `map()`
+* `enumerate()`
