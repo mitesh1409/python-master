@@ -244,3 +244,15 @@ Similarly, by using two asterisks `**` before a parameter, a function can accept
 number of keyword arguments. Inside the function, these are treated as a dictionary,  
 allowing for flexible data handling. Modifying the `concat` function to  
 `concat(**kwargs)` lets it concatenate strings based on keyword arguments.
+
+```python
+def foo(*args):
+    print(args, type(args))
+
+foo(1, 2, 3, 4, 5)
+
+def bar(**kwargs):
+    print(kwargs, type(kwargs))
+
+bar(greetings='Hello', name='Mitesh')
+```

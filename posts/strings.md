@@ -89,3 +89,66 @@ Reversing a string is easy with `hello[::-1]`.
 >>>
 >>>
 ```
+
+---
+
+Problem statement: You can only pass max 50 words, for more than that buy "Pro" plan.
+
+How to count words in a string?  
+
+1. strip input string to remove white spaces at the start and end.
+2. Count spaces in a string.
+3. No. of words = no. of spaces + 1
+
+```bash
+
+>>> input_str = "  Hello! How are you?  "
+>>>
+>>>
+>>> input_str.count(" ")
+7
+>>>
+>>>
+>>> input_str.strip()
+'Hello! How are you?'
+>>>
+>>> input_str
+'  Hello! How are you?  '
+>>>
+>>>
+>>>
+>>> input_str.strip().count(" ")
+3
+>>>
+>>>
+
+```
+
+But this is not accurate as we can have multiple spaces in between the words.  
+Then it will give incorrect word count.
+
+So correct approach is to use `split()` method of a string.
+
+```bash
+
+>>> input_str
+'  Hello! How are you?  '
+>>>
+>>>
+>>> input_str.split()
+['Hello!', 'How', 'are', 'you?']
+>>>
+>>>
+>>> items = input_str.split()
+>>> len(items)
+4
+>>>
+>>>
+>>> input_str = "  Hello!  How  are  you?  "
+>>>
+>>> items = input_str.split()
+>>> len(items)
+4
+>>>
+
+```
