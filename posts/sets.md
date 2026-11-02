@@ -75,3 +75,94 @@ intersection
 
 difference
 
+---
+
+How can I access an element from a set?  
+
+How can I loop through a set?  
+
+Provide examples.
+
+## Accessing elements of a set
+
+**You can't access by index.** Sets are unordered, so `s[0]` doesn't work:
+
+```python
+strokes = {"Free", "Back", "Fly"}
+
+strokes[0]  # ❌ TypeError: 'set' object is not subscriptable
+```
+
+What you *can* do is check whether an element exists:
+
+```python
+if "Free" in strokes:   # ✅ O(1) membership test
+    print("Found!")
+```
+
+---
+
+## Looping through a set
+
+```python
+strokes = {"Free", "Back", "Fly"}
+
+for stroke in strokes:
+    print(stroke)
+# Output order is not guaranteed, e.g. Back, Free, Fly
+```
+
+**Sorted order (returns a list):**
+```python
+for stroke in sorted(strokes):
+    print(stroke)
+# Back, Fly, Free
+```
+
+**With a counter, using `enumerate()`:**
+```python
+for i, stroke in enumerate(sorted(strokes)):
+    print(i, stroke)
+# 0 Back
+# 1 Fly
+# 2 Free
+```
+
+---
+
+## Getting a single element out
+
+**Convert to a list first (if you need a position):**
+```python
+items = list(strokes)
+print(items[0])  # works, but which element is "first" is arbitrary
+```
+
+**`pop()` removes and returns an arbitrary element:**
+```python
+item = strokes.pop()
+print(item)     # some element
+print(strokes)  # that element is gone
+```
+
+**Get one element without removing it:**
+```python
+first = next(iter(strokes))
+```
+
+---
+
+## Common set operations
+
+```python
+a = {1, 2, 3}
+b = {3, 4, 5}
+
+a | b   # union        → {1, 2, 3, 4, 5}
+a & b   # intersection → {3}
+a - b   # difference   → {1, 2}
+```
+
+---
+
+> 💡 **Key point:** the order in which a set is iterated is arbitrary and can differ between runs, so never rely on it. If you need a specific order, use `sorted(my_set)`. If you need to access items by position, a set is the wrong data structure, so use a list or tuple instead.

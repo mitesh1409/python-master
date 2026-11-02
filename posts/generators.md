@@ -70,6 +70,70 @@ by Generators.
 
 ---
 
+```python
+import sys
+
+one_million_list = [num for num in range(10*100000)]
+one_million_generator = (num for num in range(10*100000))
+
+print(f"List: {sys.getsizeof(one_million_list):,} bytes")
+print(f"Generator: {sys.getsizeof(one_million_generator):,} bytes")
+```
+
+**Typical output (exact numbers vary by Python version):**
+```
+List: 8,448,728 bytes     # ~8 MB
+Generator: 200 bytes      # tiny, and constant
+```
+
+---
+
+**Heads-up on the numbers:** `sys.getsizeof()` on a list measures only the list container (the array of pointers), not the integer objects it points to. As we saw earlier with the list vs numpy comparison, the true list footprint is larger:
+
+```python
+list_total = sys.getsizeof(one_million_list) + sum(sys.getsizeof(n) for n in one_million_list)
+print(f"List total: {list_total:,} bytes")  # ~36 MB
+```
+
+(Small integers from -5 to 256 are cached by Python, so the exact total is a little lower than a naive count, but it's still several times the container size.)
+
+---
+
+**Why the generator stays tiny:**
+
+The generator object stores only its current state (where it is in the loop), not the values:
+
+```python
+small = (num for num in range(10))
+big   = (num for num in range(10**9))
+
+print(sys.getsizeof(small))  # same size
+print(sys.getsizeof(big))    # same size, even for a billion values
+```
+
+---
+
+**Trade-off to remember:**
+
+| | List | Generator |
+|---|---|---|
+| Memory | Grows with size | Constant |
+| Reuse | Iterate many times | **One pass only**, then exhausted |
+| Indexing `x[5]` | Yes | No |
+| `len()` | Yes | No |
+
+```python
+gen = (n for n in range(3))
+print(list(gen))  # [0, 1, 2]
+print(list(gen))  # [] since it is already consumed
+```
+
+---
+
+> 💡 Use a generator when you only need to loop through values once (for example, summing or streaming a large file). Use a list when you need to reuse values, index them, or know the length. `sum(num for num in range(10**6))` works without ever building the million-item list.
+
+---
+
 ## Generator Function
 
 There are generator functions as well. Generator functions are functions that,  

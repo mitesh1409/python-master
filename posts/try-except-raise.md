@@ -1,4 +1,4 @@
-# Errors/Exceptions
+# Errors/Exceptions, `try`-`except` & `raise`
 
 Never hope for the best, ignore runtime exceptions, nor keep going.  
 A better strategy is to catch the raised exception before it stops your code.  
@@ -72,7 +72,8 @@ try-except vs. raise
 
 | | `try` - `except` | `raise` |
 |---|---|---|
-| Errors | Avoid errors being produced | Will produce an error |
+| Purpose | Error handling | Produce/raise an error/exception |
+| Errors | Avoid errors being produced | Will produce/raise an error |
 | Subsequent code | Still execute subsequent code | Avoid executing subsequent code |
 
 ---

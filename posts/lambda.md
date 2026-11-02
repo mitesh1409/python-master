@@ -105,3 +105,34 @@ Custom vs. lambda functions
 | Same task several times | Custom |
 | Performed once | Lambda |
 | Simple task | Lambda |
+
+---
+
+```python
+class Paypal:
+    def process_payment(self):
+        print('Process payment using Paypal')
+
+class CreditCard:
+    def process_payment(self):
+        print('Process payment using CreditCard')
+
+class UPI:
+    def process_payment(self):
+        print('Process payment using UPI')
+
+payment_registry = {
+    "paypal": lambda: Paypal(),
+    "credit_card": lambda: CreditCard(),
+    "upi": lambda: UPI()
+}
+
+# Usage
+# payment_method = 'upi'
+# payment_method = 'credit_card'
+payment_method = 'paypal'
+
+payment_gateway = payment_registry.get(payment_method)()
+
+print(payment_gateway.process_payment())
+```
