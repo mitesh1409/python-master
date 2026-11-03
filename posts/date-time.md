@@ -381,3 +381,99 @@ print("Shortest trip: " + str(min(trip_durations)))
 
 ---
 
+**Datacamp Project**  
+
+You recently quit your job to start a space logistics company that uses rockets to deliver critical cargo to colonies on demand. Since you're still in the startup phase, you're handling everything yourself, including writing the software to manage complex scheduling and timing across different space colonies.
+
+Before developing a full rocket flight planning and logistics system, you want to create core functions using Python's datetime module to handle dates, times, and durations. These basic functions are essential for your rocket delivery service. In this project, you will make simple reusable functions for working with timestamps, calculating rocket landing times based on launch and travel duration, and figuring out days until a delivery deadline to keep those customers updated!
+
+This project is data-less, but you can test your functions by calling them in the workspace and passing them the required variables.
+
+#1 Define a function called format_date(), which formats a timestamp into a readable datetime string.
+
+It must accept two parameters: timestamp - the Unix timestamp integer, and datetime_format - a string specifying the desired date format.
+The function should return the date correctly formatted as a string.
+For example, calling format_date(1514665153, "%d-%m-%Y") should output "30-12-2017".
+
+```python
+from datetime import datetime, timedelta
+
+def format_date(timestamp: float, datetime_format: str = "%Y-%m-%d %H:%M:%S") -> str:
+    """Formats a timestamp into a readable datetime string.
+
+    Args:
+        timestamp (float): Unix timestamp value e.g. 1727172895.0
+        datetime_format (str): Output format string. Defaults to "%Y-%m-%d %H:%M:%S"
+
+    Returns:
+        str: Formatted datetime string e.g. "2026-09-24 11:34:55"
+    """
+    dt = datetime.fromtimestamp(timestamp)
+    return dt.strftime(datetime_format)
+
+print(format_date(1727172895.0))
+# print(format_date(1727172895.0, "%B %d, %Y"))
+```
+
+#2 Define a function called calculate_landing_time(), which calculates the estimated landing time.
+
+It must accept two parameters: rocket_launch_dt - the rocket launch datetime object, and travel_duration - the expected travel time in days as an integer.
+The function should return the estimated Mars landing time as a datetime string in the format DD-MM-YYYY.
+For example, calling calculate_landing_time(datetime(2023, 2, 15), 20) should output "07-03-2023".
+
+```python
+from datetime import datetime, timedelta
+
+def calculate_landing_time(rocket_launch_dt: datetime, travel_duration: int) -> str:
+    """
+    Calculates the estimated Mars landing time.
+
+    Args:
+        rocket_launch_dt (datetime): The rocket launch datetime object.
+        travel_duration (int): Expected travel time in days.
+
+    Returns:
+        str: Estimated Mars landing time in DD-MM-YYYY format.
+    """
+    landing_dt = rocket_launch_dt + timedelta(days=travel_duration)
+    return landing_dt.strftime("%d-%m-%Y")
+
+# Usage
+launch = datetime(2026, 9, 24, 11, 34, 55)
+print(calculate_landing_time(launch, 259))  # '10-06-2027'
+```
+
+#3 Define a function named days_until_delivery(), which calculates the days until a package arrives for customers.
+
+It must accept two parameters: expected_delivery_dt - the estimated delivery date as a datetime object for the package, and current_dt - the current date as a datetime object.
+The function should calculate the difference in days between the expected delivery datetime and the current datetime, then return the number of days remaining as an integer.
+For example, calling days_until_delivery(datetime(2023, 2, 15), datetime(2023, 2, 5)) should output 10.
+
+```python
+from datetime import datetime, timedelta
+
+def days_until_delivery(expected_delivery_dt: datetime, current_dt: datetime) -> int:
+    """
+    Calculates the number of remaining days until package delivery.
+    
+    Parameters:
+    expected_delivery_dt (datetime): The estimated delivery date and time.
+    current_dt (datetime): The current date and time.
+    
+    Returns:
+    int: The number of days remaining until delivery.
+    """
+    # Subtracting two datetime objects returns a timedelta object
+    time_difference = expected_delivery_dt - current_dt
+    
+    # Extract and return the integer days attribute from the timedelta object
+    return time_difference.days
+
+# Example dates
+current = datetime(2026, 10, 1, 10, 0)
+expected = datetime(2026, 10, 5, 14, 30)
+
+# Calculate remaining days
+remaining_days = days_until_delivery(expected, current)
+print(f"Days until delivery: {remaining_days}")  # Output: Days until delivery: 4
+```
