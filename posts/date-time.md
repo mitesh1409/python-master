@@ -203,3 +203,145 @@ print(correct)  # 2026-09-24 11:30:00+05:30  ← correct!
 > NOTE:  
 > In general, whenever we really want to be sure of the duration between events  
 > that might cross a daylight saving boundary, we need to do our math in UTC.  
+
+---
+
+Date difference gives a value of type "datetime.timedelta".
+
+Subtracting dates/datetimes gives value of type "datetime.timedelta".
+
+```python
+# Import date
+from datetime import date
+
+# Create a date object for May 9th, 2007
+start = date(2007, 5, 9)
+
+# Create a date object for December 13th, 2007
+end = date(2007, 12, 13)
+
+date_diff = end - start
+
+print(date_diff) # 218 days, 0:00:00
+
+print(type(date_diff)) # <class 'datetime.timedelta'>
+```
+
+---
+
+```python
+# Import datetime
+from datetime import datetime
+
+# Create a datetime object
+dt = datetime(2017, 10, 1, 15, 26, 26)
+
+# Print the results in ISO 8601 format
+print(dt.isoformat()) # 2017-10-01T15:26:26
+```
+
+Output  
+
+```plaintext
+2017-10-01T15:26:26
+```
+
+The **`T` is just a separator** between the date part and the time part in the ISO 8601 format. It stands for "Time".
+
+```
+2017-10-01T15:26:26
+│          │
+date       time
+```
+
+It has no value of its own. It simply marks where the date ends and the time begins.
+
+---
+
+**Why not use a space?**
+
+A plain space (`2017-10-01 15:26:26`) is more readable for humans, but ISO 8601 uses `T` because:
+
+- It gives a single token with no whitespace, so it is easy to parse and safe in URLs, filenames, JSON and CSV files
+- It is unambiguous across systems and languages
+
+---
+
+**Changing the separator:**
+
+`isoformat()` lets you choose it:
+
+```python
+from datetime import datetime
+
+dt = datetime(2017, 10, 1, 15, 26, 26)
+
+print(dt.isoformat())           # 2017-10-01T15:26:26
+print(dt.isoformat(sep=" "))    # 2017-10-01 15:26:26
+```
+
+---
+
+**Parsing it back:**
+
+```python
+dt = datetime.fromisoformat("2017-10-01T15:26:26")
+```
+
+---
+
+**With a timezone, the full format looks like this:**
+
+```python
+from datetime import timezone
+
+dt_utc = datetime(2017, 10, 1, 15, 26, 26, tzinfo=timezone.utc)
+print(dt_utc.isoformat())  # 2017-10-01T15:26:26+00:00
+```
+
+You may also see a trailing `Z` (for example `2017-10-01T15:26:26Z`), which means UTC ("Zulu time").
+
+---
+
+> 💡 `T` separates date from time, and `Z` (or `+00:00`) marks UTC. Both are part of the ISO 8601 standard, which is what most APIs and databases use for timestamps.
+
+---
+
+**Turning strings into datetimes**  
+
+When you download data from the Internet, dates and times usually come to you as strings. Often the first step is to turn those strings into datetime objects.
+
+Reference  
+%Y  -  4 digit year (0000-9999)
+%m  -  2 digit month (1-12)
+%d  -  2 digit day (1-31)
+%H  -  2 digit hour (0-23)
+%M  -  2 digit minute (0-59)
+%S  -  2 digit second (0-59)
+
+```python
+# Import the datetime class
+from datetime import datetime
+
+# Starting string, in YYYY-MM-DD HH:MM:SS format
+date_str = '2017-02-03 00:00:01'
+
+# Write a format string to parse s
+date_format = '%Y-%m-%d %H:%M:%S'
+
+# Create a datetime object d
+d = datetime.strptime(date_str, date_format)
+
+# Print d
+print(d)
+```
+
+---
+
+Daylight Saving
+
+Clocks move forward in the Spring.
+
+Clocks move backward in the Fall.
+
+---
