@@ -152,3 +152,14 @@ So correct approach is to use `split()` method of a string.
 >>>
 
 ```
+
+---
+
+Stride
+
+String slicing also accepts a third index which specifies how many characters to omit before retrieving a character. In the example, the specified indices returns the following output. They are the characters retrieved between positions zero and six, skipping two characters in between. Interestingly, omitting the first and second indices and designating a minus one step returns a reversed string as shown in the output.
+
+In python, you can also specify steps by using a third index. If you don't specify the first or second index and the third one is negative, it will return the characters jumping and backward.
+
+---
+
