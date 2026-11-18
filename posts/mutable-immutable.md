@@ -23,3 +23,26 @@ What is immutable?
 
 Reference:  
 Book: Head First Python 3rd Edition
+
+---
+
+**Immutable**
+
+* int
+* float
+* bool
+* string
+* bytes
+* tuple
+* frozenset
+* None
+
+**Mutable**
+
+* list
+* dict
+* set
+* bytearray
+* objects
+* functions
+* almost everything else!
