@@ -374,3 +374,157 @@ wrapper called
 99
 foo.count = 2
 ```
+
+---
+
+One of the problems with decorators is that they obscure the decorated function's metadata.  
+
+Check the following example.
+
+```python
+
+import time
+
+def timer(func):
+    """A decorator that prints how long a function took to run.
+
+    Args:
+        func (callable): The function being decorated.
+
+    Returns:
+        callable: The decorated function.
+    """
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        total_time = time.perf_counter() - start_time
+        print(f"{func.__name__} function took {total_time:.4f} seconds")
+        return result
+    return wrapper
+
+@timer # While using decorator, function metadata is not available.
+def sleep_n_seconds(n=10):
+    """Pause processing for n seconds.
+
+    Args:
+        n (int): The number of seconds to pause for.
+
+    Returns:
+        None
+    """
+    time.sleep(n)
+
+sleep_n_seconds(2)
+
+print('Done :)')
+
+print(f"""
+sleep_n_seconds.__name__
+{sleep_n_seconds.__name__}
+""")
+
+print(f"""
+sleep_n_seconds.__doc__
+{sleep_n_seconds.__doc__}
+""")
+
+print(f"""
+sleep_n_seconds.__defaults__
+{sleep_n_seconds.__defaults__}
+""")
+
+```
+
+To understand why we have to examine the timer() decorator. Remember that when we write decorators, we almost always define a nested function to return. Because the decorator overwrites the sleep_n_seconds() function, when you ask for sleep_n_seconds()'s docstring or name, you are actually referencing the nested function that was returned by the decorator. In this case, the nested function was called wrapper() and it didn't have a docstring.
+
+Fortunately, Python provides us with an easy way to fix this. The wraps() function from the functools module is a decorator that you use when defining a decorator. If you use it to decorate the wrapper function that your decorator returns, it will modify wrapper()'s metadata to look like the function you are decorating. Notice that the wraps() decorator takes the function you are decorating as an argument.
+
+```python
+
+import time
+from functools import wraps
+
+def timer(func):
+    """A decorator that prints how long a function took to run.
+
+    Args:
+        func (callable): The function being decorated.
+
+    Returns:
+        callable: The decorated function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        total_time = time.perf_counter() - start_time
+        print(f"{func.__name__} function took {total_time:.4f} seconds")
+        return result
+    return wrapper
+
+@timer
+def sleep_n_seconds(n=10):
+    """Pause processing for n seconds.
+
+    Args:
+        n (int): The number of seconds to pause for.
+
+    Returns:
+        None
+    """
+    time.sleep(n)
+
+sleep_n_seconds(2)
+
+print('Done :)')
+
+print(f"""
+sleep_n_seconds.__name__
+{sleep_n_seconds.__name__}
+""")
+
+print(f"""
+sleep_n_seconds.__doc__
+{sleep_n_seconds.__doc__}
+""")
+
+print(f"""
+sleep_n_seconds.__defaults__
+{sleep_n_seconds.__defaults__}
+""")
+
+```
+
+---
+
+Example
+
+Measuring decorator overhead
+Your boss wrote a decorator called check_everything() that they think is amazing, and they are insisting you use it on your function. However, you've noticed that when you use it to decorate your functions, it makes them run much slower. You need to convince your boss that the decorator is adding too much processing time to your function. To do this, you are going to measure how long the decorated function takes to run and compare it to how long the undecorated function would have taken to run. This is the decorator in question:
+
+```python
+def check_everything(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    check_inputs(*args, **kwargs)
+    result = func(*args, **kwargs)
+    check_outputs(result)
+    return result
+  return wrapper
+
+
+def print_hello(func):
+    def wrapper(*args, **kwargs):
+        print('Hello :)')
+        return func(*args, **kwargs)
+    return wrapper
+
+@print_hello
+def foo():
+    print('foo called')
+
+foo()
+
+print(foo.__wrapped__)
+
+```
