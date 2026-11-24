@@ -468,3 +468,397 @@ sentences_found_lazy = re.findall(r"\(.+?\)", sentiment_analysis)
 print(sentences_found_lazy)
 
 ```
+
+---
+
+## Example #13
+
+Try another name
+
+You are still working on your Twitter sentiment analysis. You analyze now some things that caught your attention. You noticed that there are email addresses inserted in some tweets. Now, you are curious to find out which is the most common name.
+
+You want to extract the first part of the email. E.g. if you have the email marysmith90@gmail.com, you are only interested in marysmith90.
+You need to match the entire expression. So you make sure to extract only names present in emails. Also, you are only interested in names containing upper (e.g. A,B, Z) or lowercase letters (e.g. a, d, z) and numbers.
+
+The list sentiment_analysis containing the text of three tweets as well as the re module were loaded in your session. You can use print() to view it in the IPython Shell.
+
+```python
+
+import re
+
+sentiment_analysis = [
+    'Just got ur newsletter, those fares really are unbelievable. Write to statravelAU@gmail.com or statravelpo@hotmail.com. They have amazing prices',
+    'I should have paid more attention when we covered photoshop in my webpage design class in undergrad. Contact me Hollywoodheat34@msn.net.',
+    'hey missed ya at the meeting. Read your email! msdrama098@hotmail.com',
+]
+
+# Write a regex that matches email
+regex_email = r"([\da-zA-Z]+)@\S+"
+
+for tweet in sentiment_analysis:
+    # Find all matches of regex in each tweet
+    email_matched = re.findall(regex_email, tweet)
+
+    # Complete the format method to print the results
+    print("Lists of users found in this tweet: {}".format(email_matched))
+
+```
+
+---
+
+## Example #14
+
+Flying home
+
+Your boss assigned you to a small project. They are performing an analysis of the travels people made to attend business meetings. You are given a dataset with only the email subjects for each of the people traveling.
+
+You learn that the text followed a pattern. Here is an example:
+
+Here you have your boarding pass LA4214 AER-CDB 06NOV.
+
+You need to extract the information about the flight:
+
+* The two letters indicate the airline (e.g LA),
+* The 4 numbers are the flight number (e.g. 4214).
+* The three letters correspond to the departure (e.g AER),
+* The destination (CDB),
+* The date (06NOV) of the flight.
+
+All letters are always uppercase.
+
+The variable flight containing one email subject was loaded in your session. You can use print() to view it in the IPython Shell.
+
+```python
+
+import re
+
+flight = 'Subject: You are now ready to fly. Here you have your boarding pass IB3723 AMS-MAD 06OCT'
+
+# Complete the regular expression to match and capture all the flight information required. Only the first parenthesis were placed for you.
+
+regex = r"([A-Z]{2})([0-9]{4})\s([A-Z]{3})-([A-Z]{3})\s([0-9]{2}[A-Z]{3})"
+
+# Find all matches of the flight information
+flight_matches = re.findall(regex, flight)
+
+print(flight_matches)
+# [('IB', '3723', 'AMS', 'MAD', '06OCT')]
+
+#Print the matches
+print("Airline: {} Flight number: {}".format(flight_matches[0][0], flight_matches[0][1]))
+print("Departure: {} Destination: {}".format(flight_matches[0][2], flight_matches[0][3]))
+print("Date: {}".format(flight_matches[0][4]))
+
+```
+
+---
+
+## Example #15
+
+Love it!
+
+You are still working on the Twitter sentiment analysis project. First, you want to identify positive tweets about movies and concerts.
+
+You plan to find all the sentences that contain the words love, like, or enjoy and capture that word. You will limit the tweets by focusing on those that contain the words movie or concert by keeping the word in another group. You will also save the movie or concert name.
+
+For example, if you have the sentence: I love the movie Avengers. You match and capture love. You need to match and capture movie. Afterwards, you match and capture anything until the dot.
+
+The list sentiment_analysis containing the text of three tweets and the re module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+### Completed code
+
+```python
+import re
+
+sentiment_analysis = [
+    "I totally love the concert The Book of Souls World Tour. It kinda amazing!",
+    "I enjoy the movie Wreck-It Ralph. I watched with my boyfriend.",
+    "I still like the movie Wish Upon a Star. Too bad Disney doesn't show it anymore."
+]
+
+# Write a regex that matches sentences with the optional words
+regex_positive = r"(love|like|enjoy).+?(movie|concert)\s(.+?)\."
+
+for tweet in sentiment_analysis:
+    # Find all matches of regex in tweet
+    positive_matches = re.findall(regex_positive, tweet)
+
+    # Complete format to print out the results
+    print("Positive comments found {}".format(positive_matches))
+```
+
+**Output:**  
+
+```plaintext
+Positive comments found [('love', 'concert', 'The Book of Souls World Tour')]
+Positive comments found [('enjoy', 'movie', 'Wreck-It Ralph')]
+Positive comments found [('like', 'movie', 'Wish Upon a Star')]
+```
+
+---
+
+### How each blank is filled
+
+**1. The regex: `(love|like|enjoy).+?(movie|concert)\s(.+?)\.`**
+
+| Part | Meaning |
+|---|---|
+| `(love\|like\|enjoy)` | Group 1: captures one of the three words (`\|` means "or") |
+| `.+?` | Lazy match of the text in between (` the `, ` totally love the ` etc.) |
+| `(movie\|concert)` | Group 2: captures the word movie or concert |
+| `\s` | One whitespace after it |
+| `(.+?)` | Group 3: captures the name, lazily |
+| `\.` | Literal dot that ends the match (escaped, since a bare `.` means any character) |
+
+**2. The function: `re.findall(regex_positive, tweet)`**
+
+`re.findall(pattern, string)` takes the pattern first, then the string. When the pattern has **multiple groups**, it returns a list of **tuples**, one value per group.
+
+**3. The `.format()`:** `{}` is the placeholder, and `positive_matches` is passed into `.format()`.
+
+---
+
+### Why lazy `.+?` matters here
+
+In the original template, the blank sits inside `.+?`, so the lazy version is intended. With a greedy `(.+)` as the last group, the match would run to the **last** dot in the tweet. For the third tweet it would capture `Wish Upon a Star. Too bad Disney doesn't show it anymore` instead of just `Wish Upon a Star`.
+
+---
+
+> 💡 **Remember:** `findall` returns the whole match when there are no groups, a list of strings when there is one group, and a list of tuples when there are two or more groups.
+
+---
+
+## Example #16
+
+Ugh! Not for me!
+
+After finding positive tweets, you want to do it for negative tweets. Your plan now is to find sentences that contain the words hate, dislike or disapprove. You will again save the movie or concert name. You will get the tweet containing the words movie or concert but this time, you don't plan to save the word.
+
+For example, if you have the sentence: I dislike the movie Avengers a lot.. You match and capture dislike. You will match but not capture the word movie. Afterwards, you match and capture anything until the dot.
+
+The list sentiment_analysis containing the text of three tweets as well as the re module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+import re
+
+sentiment_analysis = [
+    "That was horrible! I really dislike the movie The cabin and the ant. So boring.",
+    "I disapprove the movie Honest with you. It's full of cliches.",
+    "I dislike very much the concert After twelve Tour. The sound was horrible.",
+]
+
+# Write a regex that matches sentences with the optional words
+regex_negative = r"(hate|dislike|disapprove).+?(?:movie|concert)\s(.+?)\."
+
+for tweet in sentiment_analysis:
+    # Find all matches of regex in tweet
+    negative_matches = re.findall(regex_negative, tweet)
+
+    # Complete format to print out the results
+    print("Negative comments found {}".format(negative_matches))
+
+```
+
+---
+
+## Example #17
+
+Parsing PDF files
+
+You now need to work on another small project you have been delaying. Your company gave you some PDF files of signed contracts. The goal of the project is to create a database with the information you parse from them. Three of these columns should correspond to the day, month, and year when the contract was signed.
+The dates appear as Signed on 05/24/2016 (05 indicating the month, 24 the day). You decide to use capturing groups to extract this information. Also, you would like to retrieve that information so you can store it separately in different variables.
+
+You decide to do a proof of concept.
+
+The variable contract containing the text of one contract and the re module are already loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+import re
+
+contract = "Provider will invoice Client for Services performed within 30 days of performance.  Client will pay Provider as set forth in each Statement of Work within 30 days of receipt and acceptance of such invoice. It is understood that payments to Provider for services rendered shall be made in full as agreed, without any deductions for taxes of any kind whatsoever, in conformity with Provider’s status as an independent contractor. Signed on 03/25/2001."
+
+# Write a regex that captures the month, day, and year in which the contract was signed. Scan contract for matches.
+regex_dates = r"Signed\son\s(\d{2})/(\d{2})/(\d{4})"
+
+dates = re.search(regex_dates, contract)
+
+print(dates)
+
+# Assign to each key the corresponding match
+signature = {
+    "day": dates.group(2),
+    "month": dates.group(1),
+    "year": dates.group(3)
+}
+
+# Complete the format method to print-out
+print("Our first contract is dated back to {data[year]}. Particularly, the day {data[day]} of the month {data[month]}.".format(data=signature))
+
+```
+
+---
+
+## Example #18
+
+Close the tag, please!
+
+In the meantime, you are working on one of your other projects. The company is going to develop a new product. It will help developers automatically check the code they are writing. You need to write a short script for checking that every HTML tag that is open has its proper closure.
+
+You have an example of a string containing HTML tags:
+
+<title>The Data Science Company</title>
+
+You learn that an opening HTML tag is always at the beginning of the string. It appears inside <>. A closing tag also appears inside <>, but it is preceded by /.
+
+You also remember that capturing groups can be referenced using numbers, e.g \4.
+
+The list html_tags, containing three strings with HTML tags, and there module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+import re
+
+html_tags = [
+    '<body>Welcome to our course! It would be an awesome experience</body>',
+    '<article>To be a data scientist, you need to have knowledge in statistics and mathematics</article>',
+    '<nav>About me Links Contact me!'
+]
+
+for string in html_tags:
+    # Complete the regex and find if it matches a closed HTML tags
+    match_tag =  re.match(r"<(\w+)>.*?</\1>", string)
+
+    if match_tag:
+        # If it matches print the first group capture
+        print("Your tag {} is closed".format(match_tag.group(1))) 
+    else:
+        # If it doesn't match capture only the tag 
+        notmatch_tag = re.match(r"<(\w+)>", string)
+        # Print the first group capture
+        print("Close your {} tag!".format(notmatch_tag.group(1)))
+
+```
+
+---
+
+## Example #19
+
+Reeepeated characters
+
+Back to your sentiment analysis! Your next task is to replace elongated words that appear in the tweets. We define an elongated word as a word that contains a repeating character twice or more times. e.g. "Awesoooome".
+
+Replacing those words is very important since a classifier will treat them as a different term from the source words lowering their frequency.
+
+To find them, you will use capturing groups and reference them back using numbers. E.g \4.
+
+If you want to find a match for Awesoooome. You first need to capture Awes. Then, match o and reference the same character back, and then, me.
+
+The list sentiment_analysis, containing the text of three tweets, and the re module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+import re
+
+sentiment_analysis = [
+    "@marykatherine_q i know! I heard it this morning and wondered the same thing. Moscooooooow is so behind the times",
+    "Staying at a friends house...neighborrrrrrrs are so loud-having a party",
+    "Just woke up an already have read some e-mail"
+]
+
+# Complete the regex to match an elongated word
+regex_elongated = r"\w*(\w)\1+\w*"
+
+for tweet in sentiment_analysis:
+    # Find if there is a match in each tweet 
+    match_elongated = re.search(regex_elongated, tweet)
+
+    if match_elongated:
+        # Assign the captured group zero 
+        elongated_word = match_elongated.group(0)
+
+        # Complete the format method to print the word
+        print("Elongated word found: {word}".format(word=elongated_word))
+    else:
+        print("No elongated word found")
+
+```
+
+**`regex_elongated = r"\w*(\w)\1+\w*"` is correct** for matching a word that contains a character repeated at least twice in a row (for example, `"oo"` in `"sooo"` gives 1 capture + 1 backreference = 2 total, and `"ooo"` in `"Awesoooome"` gives 1 capture + 2 backreferences = 3 total).
+
+---
+
+### Step-by-Step Breakdown of `r"\w*(\w)\1+\w*"`
+
+1. **`\w*`** — Matches **zero or more** word characters (letters, digits, or underscores) *before* the repeated character. For `"Awesoooome"`, this matches `"Awes"`. Because it uses `*` (zero or more), it also works if a word starts right away with the repeated character (like `"oooh"`).
+2. **`(\w)`** — A **capturing group** that matches a single word character and saves it as group `1`. In `"Awesoooome"`, this captures the first `"o"`.
+3. **`\1+`** — A **backreference** to capturing group `1` followed by `+` (one or more). This requires the *exact same character* to appear at least one more time immediately after the captured character. Combined with `(\w)`, `(\w)\1+` matches **two or more** identical consecutive characters (`"oo"` or `"ooo"`).
+4. **`\w*`** — Matches **zero or more** remaining word characters *after* the repeated run so the entire word is captured. For `"Awesoooome"`, this matches `"me"`.
+
+---
+
+* **`re.search(regex_elongated, tweet)`** scans each tweet for the first match of the pattern and returns a `Match` object (or `None` if no elongated word is present).
+* **`match_elongated.group(0)`** returns the entire substring matched by the regex (group `0` is always the full match; group `1` would be only the single character captured by `(\w)`).
+
+---
+
+## Example #20
+
+Surrounding words
+
+Now, you want to perform some visualizations with your sentiment_analysis dataset. You are interested in the words surrounding python. You want to count how many times a specific word appears right before and after it.
+
+Positive lookahead (?=) makes sure that first part of the expression is followed by the lookahead expression. Positive lookbehind (?<=) returns all matches that are preceded by the specified pattern.
+
+The variable sentiment_analysis, containing the text of one tweet, and the re module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+import re
+
+sentiment_analysis = "You need excellent python skills to be a data scientist. Must be! Excellent python"
+
+# Get all the words that are followed by the word python in sentiment_analysis. Print out the word found.
+
+# Positive lookahead
+look_ahead = re.findall(r"\w+(?=\spython)", sentiment_analysis)
+
+# Print out
+print(look_ahead)
+
+# Get all the words that are preceded by the word python or Python in sentiment_analysis. Print out the words found.
+# Positive lookbehind
+# look_behind = re.findall(r"(?<=python\s|Python\s)\w+", sentiment_analysis)
+look_behind = re.findall(r"(?<=[pP]ython\s)\w+", sentiment_analysis)
+
+# Print out
+print(look_behind)
+
+```
+
+---
+
+## Example #21
+
+Filtering phone numbers
+
+Now, you need to write a script for a cell-phone searcher. It should scan a list of phone numbers and return those that meet certain characteristics.
+
+The phone numbers in the list have the structure:
+
+Optional area code: 3 numbers
+Prefix: 4 numbers
+Line number: 6 numbers
+Optional extension: 2 numbers
+E.g. 654-8764-439434-01.
+
+You decide to use .findall() and the non-capturing group's negative lookahead (?!) and negative lookbehind (?<!).
+
+The list cellphones, containing three phone numbers, and the re module are loaded in your session. You can use print() to view the data in the IPython Shell.
+
+```python
+
+
+
+```
