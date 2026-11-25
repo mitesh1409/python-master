@@ -859,6 +859,22 @@ The list cellphones, containing three phone numbers, and the re module are loade
 
 ```python
 
+import re
 
+cellphones = ['4564-646464-01', '345-5785-544245', '6476-579052-01']
+
+# Get all cell phones numbers that are not preceded by the optional area code.
+for phone in cellphones:
+    number = re.findall(r"(?<!\d{3}-)\d{4}-\d{6}-\d{2}", phone)
+    # OR
+    # number = re.findall(r"(?<!\d{3}-)(?<!\d)\d{4}-\d{6}(?:-\d{2})?", phone)
+
+    print(number)
+
+# Get all the cell phones numbers that are not followed by the optional extension.
+for phone in cellphones:
+    # Get all phone numbers not followed by optional extension
+    number = re.findall(r"\d{3}-\d{4}-\d{6}(?!-\d{2})", phone)
+    print(number)
 
 ```
