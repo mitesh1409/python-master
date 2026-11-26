@@ -132,3 +132,100 @@ try-except vs. raise
 ---
 
 https://docs.python.org/3/library/exceptions.html#exception-hierarchy
+
+---
+
+## Example #1
+
+Catching exceptions
+
+Before you start writing your own custom exceptions, let's make sure you have the fundamentals of handling exceptions down.
+
+In this exercise, you are given a function invert_at_index(x, ind) that takes two arguments, a list x and an index ind, and inverts the element of the list at that index. For example invert_at_index([5,6,7], 0) returns 1/5, or 0.2 .
+
+Your goal is to implement error-handling to raise custom exceptions based on the type of error that occurs.
+
+Use a try - except - except pattern (with two except blocks) inside the function to catch and handle two exceptions as follows:
+
+* try executing the code as-is, returning 1/x[ind].
+* if ZeroDivisionError occurs, print "Cannot divide by zero!",
+* if IndexError occurs, print "Index out of range!"
+
+```python
+
+# Modify the function to catch exceptions
+def invert_at_index(x, ind):
+  try:
+    return 1/x[ind]
+  except ZeroDivisionError:
+    print("Cannot divide by zero!")
+  except IndexError:
+    print("Index out of range!")
+ 
+a_list = [5,6,0,7]
+
+# Works okay
+print(invert_at_index(a_list, 1))
+
+# Potential ZeroDivisionError
+print(invert_at_index(a_list, 2))
+
+# Potential IndexError
+print(invert_at_index(a_list, 5))
+
+```
+
+---
+
+## Example #2
+
+Custom exceptions
+
+You don't have to rely solely on built-in exceptions like IndexError: you can define custom exceptions that are more specific to your application. You can also define exception hierarchies. All you need to define an exception is a class inherited from the built-in Exception class or one of its subclasses.
+
+Earlier in the course, you defined an Employee class and used print statements and default values to handle errors like creating an employee with a salary below the minimum or giving a raise that is too large. A better way to handle this situation is to use exceptions - because these errors are specific to our application (unlike, for example, a division by zero error, which is universal), it makes sense to use custom exception classes.
+
+* Define an empty class SalaryError inherited from the built-in ValueError class.
+
+* Define an empty class BonusError inherited from the SalaryError class.
+
+* Complete the definition of __init__() to raise a SalaryError with the message "Salary is too low!" if the salary parameter is less than MIN_SALARY class attribute.
+
+* Implement exceptions in the give_bonus() method: raising a BonusError if the bonus amount is larger than the class' MAX_BONUS, and raising a SalaryError if the result of adding the bonus would be lower than the class' MIN_SALARY.
+
+```python
+
+# Define SalaryError inherited from ValueError
+class SalaryError(ValueError):
+    pass
+
+
+# Define BonusError inherited from SalaryError
+class BonusError(SalaryError):
+    pass
+
+class Employee:
+  MIN_SALARY = 30000
+  MAX_RAISE = 5000
+
+  def __init__(self, name, salary = 30000):
+    self.name = name
+
+    # If salary is too low
+    if salary < Employee.MIN_SALARY:
+      # Raise a SalaryError exception
+      raise SalaryError("Salary is too low!")
+
+    self.salary = salary
+
+  # Raise exceptions  
+  def give_bonus(self, amount):
+    if amount > Employee.MAX_BONUS:
+      raise BonusError("The bonus amount is too high!")  
+
+    elif self.salary + amount < Employee.MIN_SALARY:
+      raise SalaryError("The salary after bonus is too low!")
+
+    self.salary += amount
+
+```

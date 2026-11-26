@@ -304,3 +304,145 @@ pn = Phone(873555333)
 print(acct == pn)
 
 ```
+
+---
+
+## Example #8
+
+Comparing objects with inheritance
+
+```python
+
+class BankAccount:
+  def __init__(self, number, balance=0):
+    self.balance = balance
+    self.number = number
+
+  def deposit(self, amount):
+    self.balance += amount
+
+  def withdraw(self, amount):
+    self.balance -= amount
+
+  def __eq__(self, other):
+    print('BankAccount __eq__ called')
+    return self.number == other.number
+
+class SavingsAccount(BankAccount):
+  def __init__(self, number, balance=0, interest_rate=0.04):
+    BankAccount.__init__(self, number, balance)
+    self.interest_rate = interest_rate
+
+  def __eq__(self, other):
+    print('SavingsAccount __eq__ called')
+    return self.number == other.number
+
+ba = BankAccount(123, 15000)
+sa = SavingsAccount(456, 25000, 0.05)
+
+# Compare two accounts
+print(ba == sa)
+
+# Output
+# SavingsAccount __eq__ called
+# False
+
+print(sa == ba)
+
+# Output
+# SavingsAccount __eq__ called
+# False
+
+```
+
+---
+
+## Example #9
+
+Comparison and inheritance
+
+In this exercise, let's test your understanding of what happens when an object from a parent class is compared to an object of a child class.
+
+Consider the following two classes, which have been implemented and made available to you in script.py:
+
+```python
+class Parent:
+    def __eq__(self, other):
+        print("Parent's __eq__() called")
+        return True
+
+class Child(Parent):
+    def __eq__(self, other):
+        print("Child's __eq__() called")
+        return True
+```
+
+The Child class inherits from the Parent class, and both implement the __eq__() method that includes a diagnostic printout.
+
+Question
+
+Which `__eq__()` method will be called when the following code is run?
+
+```python
+p = Parent()
+c = Child()
+
+p == c
+```
+
+Answer
+
+`Child`'s `__eq__()` method will be called.
+
+---
+
+## Example #10
+
+String representation of objects
+
+There are two special methods in Python that return a string representation of an object. __str__() is called when you use print() or str() on an object, and __repr__() is called when you use repr() on an object, print the object in the console without calling print(), or instead of __str__() if __str__() is not defined.
+
+__str__() is supposed to provide a "user-friendly" output describing an object, and __repr__() should return the expression that, when evaluated, will return the same object, ensuring the reproducibility of your code.
+
+In this exercise, you will continue working with the Employee class from Chapter 2.
+
+```python
+
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name, self.salary = name, salary
+      
+    # Add the __repr__() method  
+    def __repr__(self):
+        return f"Employee('{self.name}', {self.salary})"   
+
+    # Add the __str__() method
+    def __str__(self):
+      emp_str = f"""Employee name: {self.name}
+Employee salary: {self.salary}"""
+      return emp_str
+
+emp1 = Employee("Amar Howard", 30000)
+print(repr(emp1))
+
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(repr(emp2))
+
+emp1 = Employee("Amar Howard", 30000)
+print(emp1)
+
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(emp2)
+
+```
+
+Output  
+
+```plaintext
+Employee('Amar Howard', 30000)
+Employee('Carolyn Ramirez', 35000)
+Employee name: Amar Howard
+Employee salary: 30000
+Employee name: Carolyn Ramirez
+Employee salary: 35000
+```
